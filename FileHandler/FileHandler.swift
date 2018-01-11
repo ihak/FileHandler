@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class FileHandler {
 
@@ -192,5 +193,35 @@ class FileHandler {
         }
         
         return directoryContents
+    }
+    
+    public class func sizeOfFile(atPath: String) -> Double? {
+        let fileManager = FileManager.default
+        let url = URL(fileURLWithPath: atPath)
+        var size: Double?
+        
+        if let attributes = try? fileManager.attributesOfItem(atPath: url.path) {
+            if let fileSize = attributes[FileAttributeKey.size] as? Double {
+                size = fileSize
+            }
+        }
+        
+        return size
+    }
+    
+    public class func compressVideo(inputURL: URL, outputURL: URL, handler:@escaping (_ exportSession: AVAssetExportSession?)-> Void) {
+        let urlAsset = AVURLAsset(url: inputURL, options: nil)
+        guard let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality) else {
+            handler(nil)
+            
+            return
+        }
+        
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie
+        exportSession.shouldOptimizeForNetworkUse = true
+        exportSession.exportAsynchronously { () -> Void in
+            handler(exportSession)
+        }
     }
 }

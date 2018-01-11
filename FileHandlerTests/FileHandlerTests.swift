@@ -57,13 +57,18 @@ class FileHandlerTests: XCTestCase {
         XCTAssertNotNil(url)
     }
     
-    func testCreateDirectory() {
+    func testCreateDirectoryInDocumentsDirectory() {
         let path = FileHandler.documentURL()?.appendingPathComponent("English")
         XCTAssertTrue(FileHandler.createDirectory(atPath: path!.absoluteString))
     }
     
+    func testCreateDirectoryInTempDirectory() {
+        let path = FileHandler.temporaryURL()?.appendingPathComponent("vdo")
+        XCTAssertTrue(FileHandler.createDirectory(atPath: path!.absoluteString))
+    }
+    
     func testCopyBundleResource() {
-        XCTAssertTrue(FileHandler.copyBundleResource(resourceName: "en_ah", ofType: "txt", toDirectory: FileHandler.temporaryPath() + "nl"))
+        XCTAssertTrue(FileHandler.copyBundleResource(resourceName: "big", ofType: "mp4", toDirectory: FileHandler.temporaryPath() + "vdo"))
     }
     
     func testRemoveItem() {
@@ -100,5 +105,29 @@ class FileHandlerTests: XCTestCase {
         let contents = FileHandler.tempDirectoryContents()
         print("Directory Contents: \(contents)")
         XCTAssertGreaterThan(contents.count, 0)
+    }
+    
+    func testFileSize() {
+        if let url = FileHandler.temporaryURL(fileName: "big.mp4", inDirectory: "vdo") {
+            if let size = FileHandler.sizeOfFile(atPath: url.path) {
+                XCTAssertGreaterThan(size, 0)
+            }
+            else {
+                XCTFail()
+            }
+        }
+    }
+    
+    func testVideoCompression() {
+        let expectation = self.expectation(description: "Video Compression")
+        
+        if let inputURL = FileHandler.temporaryURL(fileName: "big.mp4", inDirectory: "vdo"),
+            let outputURL = FileHandler.temporaryURL(fileName: "big-compressed.mp4", inDirectory: "vdo") {
+            FileHandler.compressVideo(inputURL: inputURL, outputURL: outputURL, handler: { (session) in
+                expectation.fulfill()
+            })
+        }
+        
+        self.wait(for: [expectation], timeout: 60.0)
     }
 }
