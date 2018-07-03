@@ -116,33 +116,5 @@ class FileHandlerTests: XCTestCase {
                 XCTFail()
             }
         }
-    }
-    
-    func testVideoCompression() {
-        let expectation = self.expectation(description: "Video Compression")
-        
-        if let inputURL = FileHandler.temporaryURL(fileName: "big.mp4", inDirectory: "vdo"),
-            let outputURL = FileHandler.temporaryURL(fileName: "big-compressed.mp4", inDirectory: "vdo") {
-            FileHandler.compressVideo(inputURL: inputURL, outputURL: outputURL, handler: { (session) in
-                expectation.fulfill()
-            })
-        }
-        
-        self.wait(for: [expectation], timeout: 60.0)
-    }
-    
-    func testAVAssetWriterVideoCompression() {
-        let expectation = self.expectation(description: "Video compression")
-        
-        if let inputURL = FileHandler.temporaryURL(fileName: "big.mp4", inDirectory: "vdo"),
-            let outputURL = FileHandler.temporaryURL(fileName: "big-compressed-avassetwriter.mp4", inDirectory: "vdo") {
-
-            FileHandler.compressVideoViaAVAssetWriter(inputURL: inputURL, outputURL: outputURL, completion: { (output) in
-                print("Compressed file size: \(String(describing: FileHandler.sizeOfFile(atPath: output.path)))")
-                expectation.fulfill()
-            })
-        }
-        
-        self.wait(for: [expectation], timeout: 1200.0)
-    }
+    }    
 }

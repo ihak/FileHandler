@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E42A8146200752040078538A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43480C61F5FC11300E9774E /* Assets.xcassets */; };
-		E42A8148200762520078538A /* big.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E42A8147200762520078538A /* big.mp4 */; };
-		E42A8149200762520078538A /* big.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E42A8147200762520078538A /* big.mp4 */; };
 		E43480C01F5FC11300E9774E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43480BF1F5FC11300E9774E /* AppDelegate.swift */; };
 		E43480C21F5FC11300E9774E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43480C11F5FC11300E9774E /* ViewController.swift */; };
 		E43480C51F5FC11300E9774E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43480C31F5FC11300E9774E /* Main.storyboard */; };
@@ -31,7 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E42A8147200762520078538A /* big.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = big.mp4; sourceTree = "<group>"; };
 		E43480BC1F5FC11300E9774E /* FileHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43480BF1F5FC11300E9774E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E43480C11F5FC11300E9774E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +88,6 @@
 				E43480C61F5FC11300E9774E /* Assets.xcassets */,
 				E43480C81F5FC11300E9774E /* LaunchScreen.storyboard */,
 				E43480CB1F5FC11300E9774E /* Info.plist */,
-				E42A8147200762520078538A /* big.mp4 */,
 			);
 			path = FileHandler;
 			sourceTree = "<group>";
@@ -190,7 +186,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E42A8148200762520078538A /* big.mp4 in Resources */,
 				E43480CA1F5FC11300E9774E /* LaunchScreen.storyboard in Resources */,
 				E43480C71F5FC11300E9774E /* Assets.xcassets in Resources */,
 				E43480C51F5FC11300E9774E /* Main.storyboard in Resources */,
@@ -201,7 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E42A8149200762520078538A /* big.mp4 in Resources */,
 				E42A8146200752040078538A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
