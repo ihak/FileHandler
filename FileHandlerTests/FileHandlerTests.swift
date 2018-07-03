@@ -68,7 +68,7 @@ class FileHandlerTests: XCTestCase {
     }
     
     func testCopyBundleResource() {
-        XCTAssertTrue(FileHandler.copyBundleResource(resourceName: "big", ofType: "mp4", toDirectory: FileHandler.temporaryPath() + "vdo"))
+        XCTAssertTrue(FileHandler.copyBundleResource(resourceName: "big", ofType: "mp4", toPath: FileHandler.temporaryPath() + "vdo"))
     }
     
     func testRemoveItem() {
@@ -116,5 +116,5 @@ class FileHandlerTests: XCTestCase {
                 XCTFail()
             }
         }
-    }    
+    }
 }

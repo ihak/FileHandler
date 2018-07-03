@@ -88,15 +88,28 @@ class FileHandler {
         return URL(fileURLWithPath: self.appendPath(self.temporaryPath(), pathFile: fileName))
     }
     
+    /**
+     Returns file URL object with path to temp directory appended with given file name in the given directory.
+     e.g: temp/stored/result.txt -> file: result.txt, in directory: stored
+     */
+    
     public class func temporaryURL(fileName: String, inDirectory:String) -> URL? {
         let dirURL = URL.init(fileURLWithPath: temporaryPath()).appendingPathComponent(inDirectory, isDirectory: true)
         return dirURL.appendingPathComponent(fileName)
     }
     
+    /**
+     Returns true or false depending upon if file exists at a given path or not.
+     */
+    
     public class func fileExist(at path: String) -> Bool {
         let filemanager = FileManager.default
         return filemanager.fileExists(atPath: path)
     }
+    
+    /**
+     Creates a directory at a given path. Returns true upon success or false upon failure.
+     */
     
     public class func createDirectory(atPath: String) -> Bool {
         let filemanager = FileManager.default
@@ -115,6 +128,10 @@ class FileHandler {
         return returnValue
     }
     
+    /**
+     Copies contents of a given path to the destination path. Returns true upon success or false upon failure.
+    */
+    
     private class func copyItem(fileManager: FileManager, at: URL, to: URL) -> Bool {
         var returnValue = false
         do {
@@ -128,11 +145,15 @@ class FileHandler {
         return returnValue
     }
     
-    public class func copyBundleResource(resourceName: String, ofType: String, toDirectory atPath: String) -> Bool {
+    /**
+     Copies the resource present in the bundle to the given directory/path.
+     Returns true upon success or false upon failure.
+    */
+    public class func copyBundleResource(resourceName: String, ofType: String, toPath: String) -> Bool {
         var returnValue = false
         let filemanager = FileManager.default
         
-        let url = URL(fileURLWithPath: atPath)
+        let url = URL(fileURLWithPath: toPath)
             let destUrl = url.appendingPathComponent(resourceName + "." + ofType)
         
             if let sourcePath = Bundle.main.path(forResource: resourceName, ofType: ofType) {
@@ -154,6 +175,10 @@ class FileHandler {
         return returnValue
     }
     
+    /**
+     Writes given contents to the file at the given path. Returns true upon success or false on failure.
+    */
+    
     public class func writeFile(atPath: String, withContent: String) -> Bool {
         var returnValue = false
         
@@ -166,6 +191,10 @@ class FileHandler {
         
         return returnValue
     }
+
+    /**
+     Lists the contents of Documents directory.
+     */
     
     public class func documentsDirectoryContents() -> [String] {
         let filemanager = FileManager.default
@@ -180,6 +209,10 @@ class FileHandler {
         
         return directoryContents
     }
+
+    /**
+     Lists the contents of Temp directory.
+     */
     
     public class func tempDirectoryContents() -> [String] {
         let filemanager = FileManager.default
@@ -194,6 +227,10 @@ class FileHandler {
         
         return directoryContents
     }
+    
+    /**
+     Returns the size of file at the given path.
+     */
     
     public class func sizeOfFile(atPath: String) -> Double? {
         let fileManager = FileManager.default
